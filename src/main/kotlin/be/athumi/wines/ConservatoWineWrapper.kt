@@ -3,15 +3,14 @@ package be.athumi.wines
 import be.athumi.Wine
 
 class ConservatoWineWrapper(wine: Wine) : WineWrapper(wine) {
-    override fun updateWine() {
+    override fun updatePrice() {
         increasePrice()
-
-        decreaseYearsUntilExpiration()
-
         if (wineIsExpired()) {
             increasePrice()
         }
+    }
 
-        adjustPriceLowerThanMinPrice()
+    override fun updateYearsUntilExpiration() {
+        decreaseYearsUntilExpiration()
     }
 }

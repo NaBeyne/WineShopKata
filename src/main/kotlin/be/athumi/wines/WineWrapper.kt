@@ -9,10 +9,18 @@ abstract class WineWrapper(var wine: Wine) {
         const val MIN_YEARS = 0
     }
 
-    abstract fun updateWine()
+    abstract fun updatePrice()
+
+    abstract fun updateYearsUntilExpiration()
+
+    fun updateWine() {
+        updatePrice()
+        updateYearsUntilExpiration()
+        adjustPriceLowerThanMinPrice()
+    }
 
     fun wineIsExpired(): Boolean {
-        return wine.expiresInYears < MIN_YEARS
+        return wine.expiresInYears <= MIN_YEARS
     }
 
     fun decreaseYearsUntilExpiration() {

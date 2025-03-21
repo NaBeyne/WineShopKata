@@ -6,23 +6,23 @@ private const val EVENT_YEARS_FIRST_PRICE_INCREASE = 8
 private const val EVENT_YEARS_SECOND_PRICE_INCREASE = 3
 
 class EventWineWrapper(wine: Wine) : WineWrapper(wine) {
-    override fun updateWine() {
+    override fun updatePrice() {
         increasePrice()
 
-        if (firstPriceIncreaseHappened() && wine.price < MAX_PRICE) {
+        if (firstPriceIncreaseHappened()) {
             increasePrice()
         }
 
-        if (secondPriceIncreaseHappened() && wine.price < MAX_PRICE) {
+        if (secondPriceIncreaseHappened()) {
             increasePrice()
             increasePrice()
         }
-
-        decreaseYearsUntilExpiration()
 
         adjustExpiredWinePriceToZero()
+    }
 
-        adjustPriceLowerThanMinPrice()
+    override fun updateYearsUntilExpiration() {
+        decreaseYearsUntilExpiration()
     }
 
     private fun firstPriceIncreaseHappened(): Boolean {

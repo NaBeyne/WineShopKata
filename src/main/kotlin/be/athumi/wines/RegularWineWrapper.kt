@@ -3,15 +3,14 @@ package be.athumi.wines
 import be.athumi.Wine
 
 class RegularWineWrapper(wine: Wine) : WineWrapper(wine) {
-    override fun updateWine() {
+    override fun updatePrice() {
         decreasePrice()
-
-        decreaseYearsUntilExpiration()
-
         if (wineIsExpired()) {
             decreasePrice()
         }
+    }
 
-        adjustPriceLowerThanMinPrice()
+    override fun updateYearsUntilExpiration() {
+        decreaseYearsUntilExpiration()
     }
 }
