@@ -66,7 +66,7 @@ class WineApprovalTests {
         val wineShop = WineShop(wines)
         Approvals.verifyAll("Years", (0..amountOfYears)) { year ->
             """-------- year $year --------${'\n'}${wines.joinToString("\n")}""".trimIndent()
-                .also {  wineShop.next() }
+                .also {  wineShop.updateWines() }
         }
     }
 }

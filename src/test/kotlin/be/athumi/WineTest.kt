@@ -15,7 +15,7 @@ class WineTest {
 
         assertThat(shop).isNotNull
 
-        shop.next()
+        shop.updateWines()
 
         assertThat(shop).isNotNull
     }
