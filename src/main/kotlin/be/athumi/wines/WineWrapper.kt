@@ -10,4 +10,52 @@ abstract class WineWrapper(var wine: Wine) {
     }
 
     abstract fun updateWine()
+
+    fun wineIsExpired(): Boolean {
+        return wine.expiresInYears < MIN_YEARS
+    }
+
+    fun decreaseYearsUntilExpiration() {
+        wine.expiresInYears--
+    }
+
+    fun increasePrice() {
+        if (priceIsLowerThanMaxPrice()) {
+            wine.price++
+        }
+    }
+
+    fun decreasePrice() {
+        if (priceIsGreaterThanMinPrice()) {
+            wine.price--
+        }
+    }
+
+    fun adjustPriceLowerThanMinPrice() {
+        if (priceIsLowerThanMinPrice()) {
+            setPriceToMinPrice()
+        }
+    }
+
+    fun adjustExpiredWinePriceToZero() {
+        if (wineIsExpired()) {
+            setPriceToMinPrice()
+        }
+    }
+
+    private fun priceIsLowerThanMinPrice(): Boolean {
+        return wine.price < MIN_PRICE
+    }
+
+    private fun priceIsLowerThanMaxPrice(): Boolean {
+        return wine.price < MAX_PRICE
+    }
+
+    private fun priceIsGreaterThanMinPrice(): Boolean {
+        return wine.price > MIN_PRICE
+    }
+
+    private fun setPriceToMinPrice() {
+        wine.price = MIN_PRICE
+    }
 }
