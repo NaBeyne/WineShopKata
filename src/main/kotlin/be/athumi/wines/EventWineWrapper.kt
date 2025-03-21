@@ -17,15 +17,15 @@ class EventWineWrapper(wine: Wine) : WineWrapper(wine) {
             if (wine.expiresInYears < EVENT_YEARS_SECOND_PRICE_INCREASE && wine.price < MAX_PRICE) {
                 wine.price += 2
             }
-
-            if (wine.expiresInYears < MIN_YEARS) {
-                wine.price = MIN_PRICE
-            }
         }
 
         wine.expiresInYears--
 
         if (wine.expiresInYears < MIN_YEARS) {
+            wine.price = MIN_PRICE
+        }
+
+        if (wine.price < MIN_PRICE) {
             wine.price = MIN_PRICE
         }
     }
